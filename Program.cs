@@ -46,13 +46,21 @@ static partial class Program
     /// <summary>Remet le jeu dans son état de départ.</summary>
     static void Reinitialiser()
     {
-            positionRaquette = new Vector2(
-                (LARGEUR - LARGEUR_RAQUETTE) / 2,
-                HAUTEUR - MARGE_BAS_RAQUETTE - HAUTEUR_RAQUETTE
-            );
-        
-    }
+        positionRaquette = new Vector2(
+            (LARGEUR - LARGEUR_RAQUETTE) / 2,
+            HAUTEUR - MARGE_BAS_RAQUETTE - HAUTEUR_RAQUETTE
+        );
 
+        score = 0;
+
+        for (int ligne = 0; ligne < LIGNES_BRIQUES; ligne++)
+        {
+            for (int colonne = 0; colonne < COLONNES_BRIQUES; colonne++)
+            {
+                briques[ligne, colonne] = true;
+            }
+        }
+    }
     /// <summary>Une image de jeu dans l'état Attente.</summary>
     static void MettreAJourAttente(float dt)
     {
@@ -72,6 +80,7 @@ static partial class Program
         DeplacerBalle(dt);
         RebondirSurMurs();
         RebondirSurRaquette();
+        CasserBriques();
     }
 
     /// <summary>Une image de jeu dans les états Perdu et Gagne.</summary>
