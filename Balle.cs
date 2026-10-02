@@ -16,6 +16,9 @@ static partial class Program
     /// <summary>Donne à la balle sa vitesse de départ.</summary>
     static void LancerBalle()
     {
+        float vitesse = VITESSE_BALLE / MathF.Sqrt(2);
+
+        vitesseBalle = new Vector2(vitesse, -vitesse);
     }
 
     /// <summary>Avance la balle selon sa vitesse.</summary>

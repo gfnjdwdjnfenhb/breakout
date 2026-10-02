@@ -56,9 +56,15 @@ static partial class Program
     /// <summary>Une image de jeu dans l'état Attente.</summary>
     static void MettreAJourAttente(float dt)
     {
-        DeplacerRaquette(dt);                                                         
-    }
+        DeplacerRaquette(dt);
+        CollerBalleARaquette();
 
+        if (Raylib.IsKeyPressed(KeyboardKey.Space))
+        {
+            LancerBalle();
+            etat = EtatJeu.Jeu;
+        }
+    }
     /// <summary>Une image de jeu dans l'état Jeu.</summary>
     static void MettreAJourJeu(float dt)
     {
